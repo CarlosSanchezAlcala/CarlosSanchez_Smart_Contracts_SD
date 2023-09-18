@@ -3,6 +3,8 @@ pragma solidity ^0.8.0;
 
 /**
 * @title Contrato inteligente de una Wallet (Envió y recibimiento de dinero).
+* @author Carlos Edidson Sanchez Alcala
+* @dev Almacena y maneja todo el entorno de una CBDC (BCRP)
 */
 
 contract Wallet_PIB_Definition {
