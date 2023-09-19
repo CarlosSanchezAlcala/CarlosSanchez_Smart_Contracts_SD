@@ -11,6 +11,8 @@ contract Wallet_PIB_Definition {
 
     mapping(address => uint256) private balances;
 
+    event Deposit(address indexed sender, address indexed receiver, uint256 amount);
+
     constructor(){
     }
 
@@ -18,8 +20,6 @@ contract Wallet_PIB_Definition {
     function getBalance(address account) public view returns (uint256) {
         return balances[account];
     }
-
-    event Deposit(address indexed sender, address indexed receiver, uint256 amount);
 
     /// @dev Enviar deposito, si no cumple el valor especificado, te da un mensaje de error
     function sendDeposit(address payable addr) public payable {
