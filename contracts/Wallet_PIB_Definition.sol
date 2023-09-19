@@ -14,15 +14,18 @@ contract Wallet_PIB_Definition {
     constructor(){
     }
 
-    /// @dev Obtener y/o consultar el saldo de una dirección
+    /// @notice Devuelve el saldo del "account"
     function getBalance(address account) public view returns (uint256) {
         return balances[account];
     }
 
+    event Deposit(address indexed sender, address indexed receiver, uint256 amount);
+
     /// @dev Enviar deposito, si no cumple el valor especificado, te da un mensaje de error
-    function sendDeposit(address addr, uint256 amount) public payable {
-        require(msg.value == amount, "El valor enviado o depositado, no coincide con la cantidad especificada.");
-        balances[addr] += amount;
+    function sendDeposit(address payable addr) public payable {
+        require(msg.value > 0, "El valor enviado o depositado, no coincide con la cantidad especificada.");
+        balances[addr] += msg.value;
+        emit Deposit(msg.sender, addr, msg.value);
     }
 
     receive() external payable {
